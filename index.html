@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -23,50 +23,120 @@
         <h1 class="site-title">Smart Routine &amp; Product Advisor</h1>
       </header>
 
-      <!-- Category Filter -->
-      <div class="search-section">
-        <select id="categoryFilter">
-          <option value="" disabled selected>Choose a Category</option>
-          <option value="cleanser">Cleansers</option>
-          <option value="moisturizer">Moisturizers & Treatments</option>
-          <option value="haircare">Haircare</option>
-          <option value="makeup">Makeup</option>
-          <option value="hair color">Hair Color</option>
-          <option value="hair styling">Hair Styling</option>
-          <option value="men's grooming">Men's Grooming</option>
-          <option value="suncare">Suncare</option>
-          <option value="fragrance">Fragrance</option>
-        </select>
-      </div>
+      <section class="catalog-section" aria-labelledby="catalogHeading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">THE PRODUCT EDIT</p>
+            <h2 id="catalogHeading">Find your next favorite</h2>
+          </div>
+          <label class="rtl-control" for="rtlToggle">
+            <input id="rtlToggle" type="checkbox" />
+            <span>Right-to-left layout</span>
+          </label>
+        </div>
 
-      <!-- Products Grid -->
-      <div id="productsContainer" class="products-grid"></div>
+        <div class="search-section">
+          <label class="search-field" for="productSearch">
+            <span class="visually-hidden">Search products</span>
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            <input
+              id="productSearch"
+              type="search"
+              placeholder="Search products, brands, or ingredients"
+              autocomplete="off"
+            />
+          </label>
+          <label class="category-field" for="categoryFilter">
+            <span class="visually-hidden">Filter by category</span>
+            <select id="categoryFilter">
+              <option value="">All categories</option>
+            </select>
+          </label>
+        </div>
 
-      <!-- Selected Products -->
-      <div class="selected-products">
-        <h2>Selected Products</h2>
-        <div id="selectedProductsList"></div>
-        <button id="generateRoutine" class="generate-btn">
-          <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Routine
+        <p
+          id="catalogStatus"
+          class="catalog-status"
+          role="status"
+          aria-live="polite"
+        ></p>
+        <div id="productsContainer" class="products-grid"></div>
+      </section>
+
+      <section class="selected-products" aria-labelledby="selectedHeading">
+        <div class="selected-heading">
+          <div>
+            <p class="eyebrow">YOUR SHORTLIST</p>
+            <h2 id="selectedHeading">
+              Selected products <span id="selectedCount">0</span>
+            </h2>
+          </div>
+          <button
+            id="clearSelections"
+            class="text-button"
+            type="button"
+            disabled
+          >
+            Clear all
+          </button>
+        </div>
+        <div
+          id="selectedProductsList"
+          class="selected-list"
+          aria-live="polite"
+        ></div>
+        <button
+          id="generateRoutine"
+          class="generate-btn"
+          type="button"
+          disabled
+        >
+          <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
+          <span>Generate Routine</span>
         </button>
-      </div>
+      </section>
 
       <!------- Chat Area ------->
-      <section class="chatbox">
-        <h2>Let's Build Your Routine</h2>
-        <div id="chatWindow" class="chat-window"></div>
+      <section class="chatbox" aria-labelledby="chatHeading">
+        <div class="chat-heading">
+          <div>
+            <p class="eyebrow">YOUR BEAUTY ADVISOR</p>
+            <h2 id="chatHeading">Let's build your routine</h2>
+          </div>
+          <span class="chat-status-mark" aria-hidden="true"></span>
+        </div>
+        <div
+          id="chatWindow"
+          class="chat-window"
+          role="log"
+          aria-live="polite"
+          aria-relevant="additions text"
+        >
+          <p class="empty-chat">
+            Choose a few products, then generate a routine to start chatting.
+          </p>
+        </div>
+        <p
+          id="requestStatus"
+          class="request-status"
+          role="status"
+          aria-live="polite"
+        ></p>
 
         <form id="chatForm" class="chat-form">
-          <label for="userInput" class="visually-hidden">Message</label>
+          <label for="userInput" class="visually-hidden"
+            >Ask a follow-up question</label
+          >
           <input
             id="userInput"
             name="userInput"
             type="text"
-            placeholder="Ask me about products or routines…"
+            placeholder="Generate a routine to start chatting"
             autocomplete="off"
             required
+            disabled
           />
-          <button type="submit" id="sendBtn">
+          <button type="submit" id="sendBtn" disabled aria-label="Send message">
             <i class="fa-solid fa-paper-plane"></i>
             <span class="visually-hidden">Send</span>
           </button>
